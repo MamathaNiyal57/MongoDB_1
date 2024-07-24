@@ -3,6 +3,14 @@ const mongoose = require('mongoose')
 const Schema = require('./Schema/Schema');
 const Course = require('./Schema/Schema');
 const insertData = require('./Insertion/data');
+const router = require('./Routes/routes')
+const express = require('express')
+
+
+const app = express();
+app.use(express.json());
+app.use('/', router);
+
 
 async function connect(){
 try {
@@ -16,5 +24,6 @@ connect()
 insertData('./Data/CourseData.csv')
 
 
-//ssc,Maths
-//ssc,English
+app.listen(3000, () => {
+  console.log("Server has started")
+})
